@@ -1,26 +1,26 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { GamesListComponent } from './components/games-list/games-list.component';
-import { GameFormComponent } from './components/game-form/game-form.component';
+import { ConceptoListComponent } from './components/concepto-list/concepto-list.component';
+import { ConceptoFormComponent } from './components/concepto-form/concepto-form.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/games',
+    redirectTo: 'concepto',
     pathMatch: 'full'
   },
   {
-    path: 'games',
-    component: GamesListComponent
+    path: 'concepto',
+    component: ConceptoListComponent
   },
   {
-    path: 'games/add',
-    component: GameFormComponent
+    path: 'concepto/add',
+    component: ConceptoFormComponent
   },
   {
-    path: 'games/edit/:id',
-    component: GameFormComponent
+    path: 'concepto/edit/:id',
+    component: ConceptoFormComponent
   }
 ];
 

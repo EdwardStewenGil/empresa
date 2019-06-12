@@ -6,18 +6,19 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
-import { GamesListComponent } from './components/games-list/games-list.component';
 
 // Services
-import { GamesService } from './services/games.service';
-import { GameFormComponent } from './components/game-form/game-form.component';
+import { ConceptosService } from './services/conceptos.service';
+
+import { ConceptoFormComponent } from './components/concepto-form/concepto-form.component';
+import { ConceptoListComponent } from './components/concepto-list/concepto-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
-    GamesListComponent,
-    GameFormComponent
+    ConceptoFormComponent,
+    ConceptoListComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +27,7 @@ import { GameFormComponent } from './components/game-form/game-form.component';
     FormsModule
   ],
   providers: [
-    GamesService
+    ConceptosService
   ],
   bootstrap: [AppComponent]
 })
