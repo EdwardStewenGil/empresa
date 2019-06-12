@@ -1,6 +1,7 @@
+import { ConceptosService } from './../../services/conceptos.service';
+import { Concepto } from './../../models/Concepto';
 import { Component, OnInit, HostBinding } from '@angular/core';
-
-import { ConceptosService } from '../../services/conceptos.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 
@@ -10,16 +11,43 @@ import { ConceptosService } from '../../services/conceptos.service';
   styleUrls: ['./concepto-list.component.css']
 })
 export class ConceptoListComponent implements OnInit {
+  
+
 
   @HostBinding('class') classes = 'row';
+  concepto: Concepto = {
+    id_concepto: 0,
+    concepto_desc: '',
+ 
+};
+  edit: boolean = false;
+
+  constructor( private conceptoservice : ConceptosService, private router: Router, private  activedRoute: ActivatedRoute) { }
+
+
 
   Conceptos: any = [];
 
-  constructor(private conceptoservice: ConceptosService) { }
+
 
 
   ngOnInit() {
     this.getconcepto();
+    
+    const params = this.activedRoute.snapshot.params;
+    console.log(params)
+    if (params.id){
+    
+      this.conceptoservice.getConcepto(params.id)
+      .subscribe(
+        res => {
+          console.log(res);
+          this.concepto = res;
+          this.edit = true;
+        },
+        err => console.error(err)
+      ) 
+    }
 
   }
 
@@ -46,5 +74,49 @@ export class ConceptoListComponent implements OnInit {
         err => console.error(err)
       )
   }
+
+ 
+
+  
+  saveNewConcepto(){
+  
+    this.conceptoservice.saveConcepto(this.concepto)
+    .subscribe(
+      res => {
+      console.log(res);
+      this.router.navigate(['/concepto']);
+      },
+      err => console.error(err)
+    )
+  }
+  
+
+  updateConceptoo(concepto){
+
+    console.log(concepto)
+    this.conceptoservice.updateConcepto(concepto.id_concepto,concepto)
+    .subscribe(
+      res =>{
+        console.log(res);
+        this.concepto = concepto
+
+        this.router.navigate(['/concepto']);
+      },
+      err => console.error(err)
+    )
+    
+  }
+
+
+
+
+  viewModal(concepto){
+    console.log(concepto)
+    this.concepto = concepto
+    
+  }
+
+
+
 
 }

@@ -12,7 +12,7 @@ export class ConceptoFormComponent implements OnInit {
   @HostBinding('class') classes = 'row';
 
   concepto: Concepto = {
-    id_concepto: 0,
+    id_concepto: 4,
     concepto_desc: '',
  
 };
